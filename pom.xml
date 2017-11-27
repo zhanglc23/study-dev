@@ -7,6 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>transaction-study</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -19,17 +20,36 @@
         <junit.version>4.12</junit.version>
         <mybatis.version>3.2.6</mybatis.version>
         <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.1.7</logback.version>
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
             <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
                 <version>${spring.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- logback -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
 
             <!-- mybatis核心包 -->
@@ -63,6 +83,18 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.30</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.29</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.38</version>
             </dependency>
 
             <!-- 上传组件包 -->
