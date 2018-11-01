@@ -8,8 +8,22 @@
     <modules>
         <module>transaction-study</module>
         <module>common</module>
+        <module>mq-study</module>
+        <module>thread-study</module>
+        <module>algorithm-study</module>
+        <module>elastic-job-study</module>
+        <module>mybatis-study</module>
+        <module>hystrix-study</module>
+        <module>spring-boot-study</module>
+        <module>corejava-study</module>
+        <module>es-study</module>
+        <module>design-pattern</module>
+        <module>netty-study</module>
+        <module>study-spring</module>
     </modules>
     <packaging>pom</packaging>
+
+    grant all privileges  on *.* to root@'%' identified by "123456";
 
     <name>study-dev</name>
     <url>http://maven.apache.org</url>
@@ -21,6 +35,8 @@
         <mybatis.version>3.2.6</mybatis.version>
         <slf4j.version>1.7.7</slf4j.version>
         <logback.version>1.1.7</logback.version>
+        <dubbo.version>2.5.6</dubbo.version>
+        <zkclient.version>0.10</zkclient.version>
     </properties>
 
     <dependencyManagement>
@@ -39,6 +55,41 @@
                 </exclusions>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.3.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-releasetrain</artifactId>
+                <version>Fowler-SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--dubbo -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
+
             <!-- logback -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -46,6 +97,12 @@
                 <version>${slf4j.version}</version>
             </dependency>
 
+            <!-- logback+slf4j -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
@@ -80,12 +137,6 @@
             </dependency>
 
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.30</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.0.29</version>
@@ -96,6 +147,14 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.38</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>4.1.0</version>
+            </dependency>
+
+
 
             <!-- 上传组件包 -->
             <dependency>
@@ -120,9 +179,62 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>com.netflix.hystrix</groupId>
+                <artifactId>hystrix-core</artifactId>
+                <version>1.5.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>5.6.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>5.6.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>x-pack-transport</artifactId>
+                <version>5.6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>5.0.0.Alpha1</version>
+            </dependency>
+
+
         </dependencies>
 
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 
 </project>
